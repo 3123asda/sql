@@ -1,0 +1,90 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Scanner;
+
+public class try_all {
+
+    public static void insert_data(Connection connection,Scanner call_scanner) throws Exception{
+        PreparedStatement statement  = connection.prepareStatement("INSERT into animals_type (name_animals, breed_animals, price) values(?,?,?)");
+
+        System.out.print("Enter Animal: ");
+        String user_animal = call_scanner.next();
+        call_scanner.nextLine();
+
+        System.out.print("Enter Breed Animal:");
+        String animal_breed = call_scanner.next();
+        call_scanner.nextLine();
+
+        System.out.print("Enter Price: ");
+        int animal_price = call_scanner.nextInt();
+
+        statement.setString(1,user_animal);
+        statement.setString(2,animal_breed);
+        statement.setInt(3,animal_price);
+
+        int rowAffected = statement.executeUpdate();
+        if(rowAffected > 0 ){
+            System.out.println("Success added");
+        }else{
+            System.out.println("Their no new data Added");
+        }
+    }
+
+    public static void updated(Connection connection,Scanner call_scanner) throws Exception{
+        PreparedStatement statement = connection.prepareStatement("UPDATE animals_type SET name_animals = ?,breed_animals = ?, price = ? WHERE id = ?");
+
+        System.out.println("Enter ID of you want to updated");
+        int animals_id = call_scanner.nextInt();
+
+        System.out.print("Enter new Animal breed: ");
+        String new_animal = call_scanner.next();
+        call_scanner.nextLine();
+
+        System.out.print("Enter new Animal breed: ");
+        String new_breed = call_scanner.next();
+        call_scanner.nextLine();
+
+        System.out.println("Enter New Price: ");
+        int new_price = call_scanner.nextInt();
+
+        statement.setString(1,new_animal);
+        statement.setString(2,new_breed);
+        statement.setInt(3,new_price);
+        statement.setInt(4,animals_id);
+
+        int rowAffected = statement.executeUpdate();
+        if(rowAffected > 0){
+            System.out.println("Success Update");
+        }else{
+            System.out.println("not successfully");
+        }
+
+        System.out.println("Enter new breed: ");
+    }
+
+    public static void main(String[] args) {
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/animals","root","topitagupa09155524404");
+            Scanner call_scanner = new Scanner(System.in);
+            while (true){
+                while (true){
+                    System.out.println("Choose Operation");
+                    System.out.println("1. Insert Data \n2. Update Data");
+                    int choose_operation = call_scanner.nextInt();
+
+                    if(choose_operation == 1){
+                        insert_data(connection,call_scanner);
+                    } else if (choose_operation == 2) {
+                        updated(connection,call_scanner);
+                    }else{
+                        System.out.println("Invalid Keyword");
+                        break;
+                    }
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+}
