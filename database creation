@@ -1,0 +1,19 @@
+create database student_class_record_beta1
+
+CREATE TABLE `student_class_record_beta1`.`student_info_rec` (
+  `idstudent_info_rec` VARCHAR(50) NOT NULL,
+  `student_first_name` VARCHAR(45) NOT NULL,
+  `student_middle_name` VARCHAR(45) NULL,
+  `student_last_name` VARCHAR(45) NOT NULL,
+  `birth_Year_student` VARCHAR(45) NOT NULL,
+  `birth_Month_student` VARCHAR(45) NOT NULL,
+  `birth_Day_student` VARCHAR(45) NOT NULL,
+  `email_student` VARCHAR(45) NOT NULL,
+  `password_student` VARCHAR(45) NOT NULL,
+  `filipino_grade` INT NOT NULL,
+  `pr_grade` INT NOT NULL,
+  `philosophy_grade` INT NOT NULL,
+  `pe_grade` INT NOT NULL,
+  `ict_grade` INT NOT NULL,
+  PRIMARY KEY (`idstudent_info_rec`),
+  UNIQUE INDEX `idstudent_info_rec_UNIQUE` (`idstudent_info_rec` ASC) VISIBLE);
