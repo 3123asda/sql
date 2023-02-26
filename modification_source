@@ -1,0 +1,94 @@
+public static String input_RealName(Scanner call_scanner) {
+        while (true) {
+            first_name_loop:
+            while (true) {
+                System.out.print("Student First Name: ");
+                first_name = call_scanner.nextLine().toLowerCase().trim();
+                if (first_name.matches("[a-z \\s]+")) {
+                    String[] con_arr_first_name = {first_name};
+                    String first_name_FirstLetter = (con_arr_first_name[0].charAt(0)) + "";
+                    if (first_name_FirstLetter.matches("[a-z]")) {
+                        try {
+                            String first_name_SecondLetter = (con_arr_first_name[0].charAt(1)) + "";
+                            if (first_name_SecondLetter.matches("[a-z]")) {
+                                //middle_name_loop
+                                while (true){
+                                    System.out.println("If You Don't Have a Middle Name You Can Just Type None");
+                                    System.out.print("Student Middle Name: ");
+                                    middle_name = call_scanner.nextLine().toLowerCase().trim();
+                                    if(middle_name.matches("[a-z]+") && middle_name.equals("none")){
+                                        //last_name_loop
+                                        while (true){
+                                            System.out.print("Student Last Name: ");
+                                            last_name = call_scanner.nextLine().toLowerCase().trim();
+                                            if(last_name.matches("[a-z]+")){
+                                                coc_account_email = first_name_FirstLetter + first_name_SecondLetter + first_name_FirstLetter + first_name_SecondLetter + "." + last_name + ".coc@phinmaed.com";
+                                                student_duplicate_name = last_name + ", " +first_name; ;
+                                                student_duplicate_name_ConvertUpperCase = student_duplicate_name.toUpperCase();
+
+                                                student_ID = (ThreadLocalRandom.current().nextLong(100000000000L,999999999999L)) + "";
+
+
+                                                ict_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                pr_grade =ThreadLocalRandom.current().nextInt(70,100);
+                                                philo_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                fil_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                pe_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                return coc_account_email;
+
+                                                //input_BirthDate(call_scanner);
+                                            }else{
+                                                System.out.println("Please Correctly Input Your Last Name.");
+                                            }
+                                        }
+                                    } else if (middle_name.matches("[a-z]+")) {
+                                        String[] con_arr_middle_name = {middle_name};
+                                        middle_name_FirstLetter = (con_arr_middle_name[0].charAt(0)) + "";
+                                        if(middle_name_FirstLetter.matches("[a-z]")){
+                                            try {
+                                                middle_name_SecondLetter = (con_arr_middle_name[0].charAt(1)) + "";
+                                                //last_name_loop
+                                                while (true){
+                                                    System.out.print("Student Last Name: ");
+                                                    last_name = call_scanner.nextLine().toLowerCase().trim();
+                                                    if(last_name.matches("[a-z]+")){
+
+                                                        coc_account_email = first_name_FirstLetter + first_name_SecondLetter + middle_name_FirstLetter + middle_name_SecondLetter + "." + last_name + ".coc@phinmaed.com";
+                                                        student_duplicate_name = last_name + ", " + first_name + " " + middle_name;
+                                                        student_duplicate_name_ConvertUpperCase = student_duplicate_name.toUpperCase();
+
+                                                        student_ID = (ThreadLocalRandom.current().nextLong(100000000000L,999999999999L)) + "";
+
+                                                        ict_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                        pr_grade =ThreadLocalRandom.current().nextInt(70,100);
+                                                        philo_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                        fil_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                        pe_grade = ThreadLocalRandom.current().nextInt(70,100);
+                                                        return coc_account_email;
+                                                        //input_BirthDate(call_scanner);
+                                                    }else{
+                                                        System.out.println("Please Correctly Input Your Last Name.");
+                                                    }
+                                                }
+                                            }catch (StringIndexOutOfBoundsException e){
+                                                System.out.println("Please Correctly Input Your Middle Name.");
+                                            }
+                                        }
+                                    } else{
+                                        System.out.println("You inputted contain number(s) or special character(s)!Try again.");
+                                    }
+                                }
+                            }
+                        } catch (StringIndexOutOfBoundsException e) {
+                            System.out.println("Please Correctly Inputted Your First Name");
+                        }
+                    } else {
+                        System.out.println("You may be inputted contain number(s) or special character(s)!Try agains.");
+                        break first_name_loop;
+                    }
+                } else {
+                    System.out.println("You may be inputted contain number(s) or special character(s)!Try again.");
+                }
+            }
+        }
+    }
